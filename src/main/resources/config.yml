@@ -1,0 +1,6 @@
+costs: 5
+experience: 7
+PLUGIN_PREFIX: "[XcraftExperience]"
+SERVER_PREFIX: "[Ardania]"
+PERMISSION_DENY_ERR_MSG: "Das darfst du nicht tun!"
+MONEY_NAME: "Euronen"

@@ -1,0 +1,8 @@
+name: XCraftWonderfulPotion
+version: 0.0.1
+main: de.xcraft.jan.xcraftwonderfulpotion.XCraftWonderfulPotion
+api-version: 1.13
+
+commands:
+  xp:
+    description: Help Page
