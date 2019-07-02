@@ -6,3 +6,10 @@ api-version: 1.13
 commands:
   xp:
     description: Help Page
+permissions:
+  xcraftexperience.check.other:
+    default: op
+  xcraftexperience.create:
+    default: false
+  xcraftexperience.check:
+    default: false
