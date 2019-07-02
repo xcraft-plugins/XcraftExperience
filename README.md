@@ -8,5 +8,5 @@
 ## Commands
 - Alias: b, bottle, xpbottle, xpb
 - /b check
-- /b check <Player>
-- /b create <Amount>
+- /b check [Player]
+- /b create [Amount]
