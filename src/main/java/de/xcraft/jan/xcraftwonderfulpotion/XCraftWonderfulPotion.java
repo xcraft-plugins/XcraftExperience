@@ -22,6 +22,6 @@ public class XCraftWonderfulPotion extends JavaPlugin {
 
         pm = Bukkit.getPluginManager();
 
-        getCommand("xp").setExecutor(commandHandler);
+        getCommand("bottle").setExecutor(commandHandler);
     }
 }

@@ -4,12 +4,13 @@ main: de.xcraft.jan.xcraftwonderfulpotion.XCraftWonderfulPotion
 api-version: 1.13
 
 commands:
-  xp:
+  bottle:
     description: Help Page
+    aliases: [b, xpbottle, xpb]
 permissions:
   xcraftexperience.check.other:
     default: op
   xcraftexperience.create:
-    default: false
+    default: op
   xcraftexperience.check:
-    default: false
+    default: op
