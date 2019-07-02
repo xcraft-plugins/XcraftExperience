@@ -22,7 +22,7 @@ public class CommandHandler implements CommandExecutor {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-                player.sendMessage(ChatColor.GRAY +" " + plugin.getConfig() +" " + ChatColor.GREEN + "Help:");
+                player.sendMessage(ChatColor.GRAY +" " + plugin.getConfig().getString("PLUGIN_PREFIX") +" " + ChatColor.GREEN + "Help:");
                 player.sendMessage(ChatColor.GRAY + "->" + ChatColor.GREEN + "/xp check " + ChatColor.DARK_AQUA + " - Zeigt dir an wie viele Erfahrungsfläschchen du herstellen kannst.");
                 player.sendMessage(ChatColor.GRAY + "->" + ChatColor.GREEN + "/xp create <amount>" + ChatColor.DARK_AQUA + " - Erstellt Erfahrungsfläschchen.");
             } else if (args[0].equals("check")) {

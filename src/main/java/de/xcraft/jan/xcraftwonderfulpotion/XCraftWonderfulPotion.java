@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import static de.xcraft.jan.xcraftwonderfulpotion.util.Registry.initVault;
+import static de.xcraft.jan.xcraftwonderfulpotion.util.Registry.*;
 
 public class XCraftWonderfulPotion extends JavaPlugin {
 
@@ -14,6 +15,7 @@ public class XCraftWonderfulPotion extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        LOGGER = getLogger();
         initVault(getServer().getPluginManager(), getServer().getServicesManager());
 
         saveDefaultConfig();
