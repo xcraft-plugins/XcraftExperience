@@ -1,7 +1,7 @@
-package de.xcraft.xcraftexperience.commands;
+package de.xcraft.jan.xcraftexperience.commands;
 
-import de.xcraft.xcraftexperience.util.Registry;
-import de.xcraft.xcraftexperience.util.VaultEconomy;
+import de.xcraft.jan.xcraftexperience.util.Registry;
+import de.xcraft.jan.xcraftexperience.util.VaultEconomy;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,11 +10,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-
+/**
+ * Class for create command.
+ */
 public class CreateCommand extends VaultEconomy {
 
     public File config = new File("config");
 
+    /**
+     * If successful the player will be given Exp-Bottles. The Exp and money of the player will be decreased after that.
+     * @param player the player who execute the command
+     * @param amount the amount of bottle to be created
+     * @param plugin the plugin of this command
+     * @return string with a specific message depending if successful or not
+     */
     public static String createPlayer(Player player, int amount, JavaPlugin plugin) {
         int freeSpace = 0;
         int usedStacks = 0;

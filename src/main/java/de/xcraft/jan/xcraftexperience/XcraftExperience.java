@@ -1,12 +1,12 @@
-package de.xcraft.xcraftexperience;
+package de.xcraft.jan.xcraftexperience;
 
-import de.xcraft.xcraftexperience.commands.CommandHandler;
+import de.xcraft.jan.xcraftexperience.commands.CommandHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import static de.xcraft.xcraftexperience.util.Registry.initVault;
-import static de.xcraft.xcraftexperience.util.Registry.*;
+import static de.xcraft.jan.xcraftexperience.util.Registry.initVault;
+import static de.xcraft.jan.xcraftexperience.util.Registry.*;
 
 public class XcraftExperience extends JavaPlugin {
 

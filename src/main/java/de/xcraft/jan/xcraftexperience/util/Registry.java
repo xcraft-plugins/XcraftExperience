@@ -1,4 +1,4 @@
-package de.xcraft.xcraftexperience.util;
+package de.xcraft.jan.xcraftexperience.util;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.Plugin;

@@ -1,4 +1,4 @@
-package de.xcraft.xcraftexperience.commands;
+package de.xcraft.jan.xcraftexperience.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,6 +12,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handler class for all commands.
+ */
 public class CommandHandler implements CommandExecutor, TabCompleter {
 
     JavaPlugin plugin;
@@ -88,7 +91,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         return false;
     }
 
-    public boolean isInt(String str) {
+    private boolean isInt(String str) {
         try {
             Integer.parseInt(str);
             return true;

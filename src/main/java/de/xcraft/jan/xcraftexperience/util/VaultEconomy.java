@@ -1,4 +1,4 @@
-package de.xcraft.xcraftexperience.util;
+package de.xcraft.jan.xcraftexperience.util;
 
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
