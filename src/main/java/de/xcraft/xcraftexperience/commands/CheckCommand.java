@@ -22,9 +22,9 @@ public class CheckCommand {
         }
     }
 
-    public static String checkAdmin(Player player, String otherPlayer) {
+    public static String checkAdmin(Player player, String otherPlayer, JavaPlugin plugin) {
         if (Bukkit.getServer().getPlayer(otherPlayer) != null) {
-            return ChatColor.DARK_AQUA + " " + otherPlayer + " hat " + Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()) + " Erfahrungspunkte.";
+            return ChatColor.GRAY + plugin.getConfig().getString("PLUGIN_PREFIX")+ChatColor.DARK_AQUA + " " + otherPlayer + " hat " + Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()) + " Erfahrungspunkte.";
         } else {
             return ChatColor.RED + " " +  otherPlayer + " wurde nicht gefunden!";
         }

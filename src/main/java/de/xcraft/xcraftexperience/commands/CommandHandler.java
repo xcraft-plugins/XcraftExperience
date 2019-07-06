@@ -60,20 +60,28 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                 }
             } else if (args[0].equals("check") && args[1] != null) {
                 if (player.hasPermission("xcraftexperience.check.other")) {
-                    player.sendMessage(CheckCommand.checkAdmin(player, args[1]));
+                    player.sendMessage(CheckCommand.checkAdmin(player, args[1], plugin));
                 }
                 else {
                     player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
                 }
             } else if (args[0].equals("create")) {
                 if (player.hasPermission("xcraftexperience.create")) {
-                    if(isInt(args[1])) {
-                        player.sendMessage(CreateCommand.createPlayer(player, Integer.parseInt(args[1]), plugin));
+                    if(args.length == 2 && !args[1].equals("")) {
+                        if(isInt(args[1])) {
+                            player.sendMessage(CreateCommand.createPlayer(player, Integer.parseInt(args[1]), plugin));
+                        } else {
+                            player.sendMessage(ChatColor.RED + "Du musst eine Zahl eingeben!");
+                        }
                     } else {
                         player.sendMessage(ChatColor.RED + "Du musst eine Zahl eingeben!");
                     }
                 } else {
                     player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
+                }
+            } else if (args[0].equals("info")){
+                if (player.hasPermission("xcraftexperience.info")) {
+                    player.sendMessage(InfoCommand.PluginInfo(player, plugin));
                 }
             }
         }
