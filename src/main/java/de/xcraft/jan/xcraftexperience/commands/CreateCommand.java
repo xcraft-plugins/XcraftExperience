@@ -1,7 +1,6 @@
 package de.xcraft.jan.xcraftexperience.commands;
 
 import de.xcraft.jan.xcraftexperience.util.Registry;
-import de.xcraft.jan.xcraftexperience.util.VaultEconomy;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -16,7 +15,7 @@ import java.util.Arrays;
 /**
  * Class for create command.
  */
-public class CreateCommand extends VaultEconomy {
+public class CreateCommand {
 
     public File config = new File("config");
     Player player;
