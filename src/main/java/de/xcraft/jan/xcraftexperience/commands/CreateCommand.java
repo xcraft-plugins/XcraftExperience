@@ -36,7 +36,7 @@ public class CreateCommand {
      * @return string with a specific message depending if successful or not
      */
     public String createPlayer() {
-        if (player.getTotalExperience() / 7 >= amount) { //Überprüft ob der Spieler genug Erfahrungspunkte besitzt.
+        if (player.getTotalExperience() / plugin.getConfig().getInt("experience") >= amount) { //Überprüft ob der Spieler genug Erfahrungspunkte besitzt.
 
             if (validateSpace()) {
 

@@ -73,8 +73,13 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                 if (player.hasPermission("xcraftexperience.create")) {
                     if (args.length == 2 && !args[1].equals("")) {
                         if (isInt(args[1])) {
-                            createCommand = new CreateCommand(player, plugin, args[1]);
-                            player.sendMessage(createCommand.createPlayer());
+                            if(isPositive(args[1])){
+                                createCommand = new CreateCommand(player, plugin, args[1]);
+                                player.sendMessage(createCommand.createPlayer());
+                            }
+                            else {
+                                player.sendMessage(ChatColor.RED + "Bitte gib eine Positive Zahl ein!");
+                            }
                         } else {
                             player.sendMessage(ChatColor.RED + "Du musst eine Zahl eingeben!");
                         }
@@ -93,11 +98,28 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         return false;
     }
 
+    /**
+     * @param str the Integer to check
+     * @return true if it is an int
+     */
     private boolean isInt(String str) {
         try {
             Integer.parseInt(str);
             return true;
         } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * @param str the Integer to check
+     * @return true if it is positive
+     */
+    private boolean isPositive(String str) {
+        if (Integer.parseInt(str) > 0) {
+            return true;
+        }
+        else {
             return false;
         }
     }
