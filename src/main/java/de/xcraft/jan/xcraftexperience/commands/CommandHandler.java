@@ -50,7 +50,6 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         Player player;
         if (sender instanceof Player) {
             player = (Player) sender;
-            createCommand = new CreateCommand(player, plugin);
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
                 player.sendMessage(ChatColor.GRAY + " " + plugin.getConfig().getString("PLUGIN_PREFIX") + " " + ChatColor.GREEN + "Help:");
                 player.sendMessage(ChatColor.GRAY + "->" + ChatColor.GREEN + "/bottle check " + ChatColor.DARK_AQUA + " - Zeigt dir an wie viele Erfahrungsfläschchen du herstellen kannst.");
@@ -71,7 +70,8 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                 if (player.hasPermission("xcraftexperience.create")) {
                     if (args.length == 2 && !args[1].equals("")) {
                         if (isInt(args[1])) {
-                            player.sendMessage(createCommand.createPlayer(Integer.parseInt(args[1])));
+                            createCommand = new CreateCommand(player, plugin, args[1]);
+                            player.sendMessage(createCommand.createPlayer());
                         } else {
                             player.sendMessage(ChatColor.RED + "Du musst eine Zahl eingeben!");
                         }
