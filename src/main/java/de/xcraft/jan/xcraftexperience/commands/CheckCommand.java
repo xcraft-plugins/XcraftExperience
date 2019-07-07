@@ -13,14 +13,18 @@ import java.io.File;
 public class CheckCommand {
 
     public File config = new File("config");
+    Player player;
+    JavaPlugin plugin;
+
+    public CheckCommand(Player player, JavaPlugin plugin) {
+        this.player = player;
+        this.plugin = plugin;
+    }
 
     /**
-     *
-     * @param player the player who execute the command
-     * @param plugin the plugin of this command
      * @return string with values of the amount of Exp and money and how many Exp-Bottle can be created
      */
-    public static String checkPlayer(Player player, JavaPlugin plugin) {
+    public String checkPlayer() {
         if (player.getTotalExperience() >= plugin.getConfig().getInt("experience")) {//Überprüft ob der Spieler mehr XP hat als in der Config angeben wenn ja sagt er ihm we viele Flaschen er herstellen kann und wie viel es ihm Kostet.
             return ChatColor.GRAY + plugin.getConfig().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + ChatColor.GOLD + Integer.toString(player.getTotalExperience()) + " Erfahrungspunkte. " + ChatColor.DARK_AQUA +
                     "Du kannst " + ChatColor.GOLD + Integer.toString(player.getTotalExperience() / plugin.getConfig().getInt("experience")) + " Erfahrungsfläschchen" + ChatColor.DARK_AQUA + " herstellen " +
@@ -32,13 +36,10 @@ public class CheckCommand {
     }
 
     /**
-     *
-     * @param player the player who execute the command
      * @param otherPlayer the player to check
-     * @param plugin the plugin of this command
      * @return the Exp value of the player
      */
-    public static String checkAdmin(Player player, String otherPlayer, JavaPlugin plugin) {
+    public String checkAdmin(String otherPlayer) {
         if (Bukkit.getServer().getPlayer(otherPlayer) != null) {
             return ChatColor.GRAY + plugin.getConfig().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " " + otherPlayer + " hat " + Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()) + " Erfahrungspunkte.";
         } else {

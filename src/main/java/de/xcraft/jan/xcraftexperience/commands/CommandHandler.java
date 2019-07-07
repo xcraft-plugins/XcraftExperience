@@ -19,6 +19,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 
     JavaPlugin plugin;
     CreateCommand createCommand;
+    CheckCommand checkCommand;
 
     public CommandHandler(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -56,13 +57,15 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                 player.sendMessage(ChatColor.GRAY + "->" + ChatColor.GREEN + "/bottle create <amount>" + ChatColor.DARK_AQUA + " - Erstellt Erfahrungsfläschchen.");
             } else if (args[0].equals("check") && args.length == 1) {
                 if (player.hasPermission("xcraftexperience.check")) {
-                    player.sendMessage(CheckCommand.checkPlayer(player, plugin));
+                    checkCommand = new CheckCommand(player, plugin);
+                    player.sendMessage(checkCommand.checkPlayer());
                 } else {
                     player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
                 }
             } else if (args[0].equals("check") && args[1] != null) {
                 if (player.hasPermission("xcraftexperience.check.other")) {
-                    player.sendMessage(CheckCommand.checkAdmin(player, args[1], plugin));
+                    checkCommand = new CheckCommand(player, plugin);
+                    player.sendMessage(checkCommand.checkAdmin(args[1]));
                 } else {
                     player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
                 }
