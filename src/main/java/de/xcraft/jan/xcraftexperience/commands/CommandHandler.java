@@ -18,6 +18,7 @@ import java.util.List;
 public class CommandHandler implements CommandExecutor, TabCompleter {
 
     JavaPlugin plugin;
+    CreateCommand createCommand;
 
     public CommandHandler(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -44,35 +45,33 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         return completions;
     }
 
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player;
         if (sender instanceof Player) {
             player = (Player) sender;
+            createCommand = new CreateCommand(player, plugin);
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-                player.sendMessage(ChatColor.GRAY +" " + plugin.getConfig().getString("PLUGIN_PREFIX") +" " + ChatColor.GREEN + "Help:");
+                player.sendMessage(ChatColor.GRAY + " " + plugin.getConfig().getString("PLUGIN_PREFIX") + " " + ChatColor.GREEN + "Help:");
                 player.sendMessage(ChatColor.GRAY + "->" + ChatColor.GREEN + "/bottle check " + ChatColor.DARK_AQUA + " - Zeigt dir an wie viele Erfahrungsfläschchen du herstellen kannst.");
                 player.sendMessage(ChatColor.GRAY + "->" + ChatColor.GREEN + "/bottle create <amount>" + ChatColor.DARK_AQUA + " - Erstellt Erfahrungsfläschchen.");
             } else if (args[0].equals("check") && args.length == 1) {
                 if (player.hasPermission("xcraftexperience.check")) {
                     player.sendMessage(CheckCommand.checkPlayer(player, plugin));
-                }
-                else {
+                } else {
                     player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
                 }
             } else if (args[0].equals("check") && args[1] != null) {
                 if (player.hasPermission("xcraftexperience.check.other")) {
                     player.sendMessage(CheckCommand.checkAdmin(player, args[1], plugin));
-                }
-                else {
+                } else {
                     player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
                 }
             } else if (args[0].equals("create")) {
                 if (player.hasPermission("xcraftexperience.create")) {
-                    if(args.length == 2 && !args[1].equals("")) {
-                        if(isInt(args[1])) {
-                            player.sendMessage(CreateCommand.createPlayer(player, Integer.parseInt(args[1]), plugin));
+                    if (args.length == 2 && !args[1].equals("")) {
+                        if (isInt(args[1])) {
+                            player.sendMessage(createCommand.createPlayer(Integer.parseInt(args[1])));
                         } else {
                             player.sendMessage(ChatColor.RED + "Du musst eine Zahl eingeben!");
                         }
@@ -82,7 +81,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                 } else {
                     player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
                 }
-            } else if (args[0].equals("info")){
+            } else if (args[0].equals("info")) {
                 if (player.hasPermission("xcraftexperience.info")) {
                     player.sendMessage(InfoCommand.PluginInfo(player, plugin));
                 }
