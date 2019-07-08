@@ -57,22 +57,22 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-                player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + " " + ChatColor.GREEN + "Help:");
-                player.sendMessage(ChatColor.GRAY + "->&r" + MESSAGEHANDLER.getMessages().get("BOTTLE_CHECK_HELP_TEXT"));
-                player.sendMessage(ChatColor.GRAY + "->&r" + MESSAGEHANDLER.getMessages().get("BOTTLE_CREATE_HELP_TEXT"));
+                player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + " " + ChatColor.DARK_GREEN + "Help:");
+                player.sendMessage(ChatColor.GRAY + "->" + MESSAGEHANDLER.getConfiguration().getString("BOTTLE_CHECK_HELP_TEXT"));
+                player.sendMessage(ChatColor.GRAY + "->" + MESSAGEHANDLER.getConfiguration().getString("BOTTLE_CREATE_HELP_TEXT"));
             } else if (args[0].equals("check") && args.length == 1) {
                 if (player.hasPermission("xcraftexperience.check")) {
                     checkCommand = new CheckCommand(player, plugin);
                     player.sendMessage(checkCommand.checkPlayer());
                 } else {
-                    player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_PERMISSIONS"));
+                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));
                 }
             } else if (args[0].equals("check") && args[1] != null) {
                 if (player.hasPermission("xcraftexperience.check.other")) {
                     checkCommand = new CheckCommand(player, plugin);
                     player.sendMessage(checkCommand.checkAdmin(args[1]));
                 } else {
-                    player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_PERMISSIONS"));
+                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));
                 }
             } else if (args[0].equals("create")) {
                 if (player.hasPermission("xcraftexperience.create")) {
@@ -81,13 +81,13 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                             createCommand = new CreateCommand(player, args[1]);
                             player.sendMessage(createCommand.createPlayer());
                         } else {
-                            player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NEGATIVE_NUMBER"));
+                            player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NEGATIVE_NUMBER"));
                         }
                     } else {
-                        player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NO_NUMBER"));
+                        player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_NUMBER"));
                     }
                 } else {
-                    player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_PERMISSIONS"));
+                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));
                 }
             } else if (args[0].equals("info")) {
                 if (player.hasPermission("xcraftexperience.info")) {

@@ -1,14 +1,14 @@
-PLUGIN_PREFIX: &f[&aXcraftExperience&f]&r
-SERVER_PREFIX: &f[&2Ardania&f]&r
-MONEY_NAME: &3Euronen&r
-BOTTLE_CHECK_HELP_TEXT: &3/bottle check - Zeigt dir an wie viele Erfahrungsfläschchen du herstellen kannst.&r
-BOTTLE_CREATE_HELP_TEXT: &3/bottle create <amount> - Erstellt Erfahrungsfläschchen.&r
-PLAYER_CHECK_MESSAGE: &3Du hast [Exp] Erfahrungspunkte. Du kannst [BottleAmount] Erfahrungsfläschchen herstellen. Das würde dich [cost] Euronen kosten.&r
-ADMIN_CHECK_MESSAGE: &3Der Spieler [playername] hat [Exp].&r
-ERROR_PERMISSIONS: &4Du hast keine Rechte dies zu tun!&r
-ERROR_NEGATIVE_NUMBER: &4Bitte gib eine Positive Zahl ein!&r
-ERROR_NO_NUMBER: &4Bitte gib eine Zahl ein!&r
-ERROR_NO_MONEY: &4Du hast nicht genug Geld um dir das zu leisten!&r
-ERROR_NO_SPACE: &4Du hast nicht genug Platz in deinem Inventar!&r
-ERROR_NO_XP: &4Du hast nicht genug Erfahrungspunkte um dir das herzustellen!&r
-ERROR_NO_PLAYER: &4Der Spieler konnte nicht gefunden werden!&r
+PLUGIN_PREFIX: '§f[§aXcraftExperience§f]§r'
+SERVER_PREFIX: '§f[§2Ardania§f]§r'
+MONEY_NAME: '§3Euronen§r'
+BOTTLE_CHECK_HELP_TEXT: '§3/bottle check - Zeigt dir an wie viele Erfahrungsfläschchen du herstellen kannst.§r'
+BOTTLE_CREATE_HELP_TEXT: '§3/bottle create <amount> - Erstellt Erfahrungsfläschchen.§r'
+PLAYER_CHECK_MESSAGE: '§3Du hast [Exp] Erfahrungspunkte. Du kannst [BottleAmount] Erfahrungsfläschchen herstellen. Das würde dich [cost] Euronen kosten.§r'
+ADMIN_CHECK_MESSAGE: '§3Der Spieler [playername] hat [Exp].§r'
+ERROR_PERMISSIONS: '§4Du hast keine Rechte dies zu tun!§r'
+ERROR_NEGATIVE_NUMBER: '§4Bitte gib eine Positive Zahl ein!§r'
+ERROR_NO_NUMBER: '§4Bitte gib eine Zahl ein!§r'
+ERROR_NO_MONEY: '§4Du hast nicht genug Geld um dir das zu leisten!§r'
+ERROR_NO_SPACE: '§4Du hast nicht genug Platz in deinem Inventar!§r'
+ERROR_NO_XP: '§4Du hast nicht genug Erfahrungspunkte um dir etwas herzustellen!§r'
+ERROR_NO_PLAYER: '§4Der Spieler konnte nicht gefunden werden!§r'

@@ -28,13 +28,10 @@ public class CheckCommand {
      */
     public String checkPlayer() {
         if (player.getTotalExperience() >= CONFIGHANDLER.getExperienceInt()) {//Überprüft ob der Spieler mehr XP hat als in der Config angeben wenn ja sagt er ihm we viele Flaschen er herstellen kann und wie viel es ihm Kostet.
-            String sb = new String(MESSAGEHANDLER.getMessages().get("PLAYER_CHECK_MESSAGE"));
-            sb.replace("[Exp]",Integer.toString(player.getTotalExperience()));
-            sb.replace("[BottleAmount]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceInt()));
-            sb.replace("[cost]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceInt() * CONFIGHANDLER.getCostsInt()));
-            return MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + sb;
+            String sb = new String(MESSAGEHANDLER.getConfiguration().getString("PLAYER_CHECK_MESSAGE")).replace("[Exp]",Integer.toString(player.getTotalExperience())).replace("[BottleAmount]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceInt())).replace("[cost]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceInt() * CONFIGHANDLER.getCostsInt()));
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
         } else {
-            return MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NO_XP"); //Sagt dem Spieler das er zu wenig XP-Punkte hat um überhaupt eine Flasche herstellen zu können.
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_XP"); //Sagt dem Spieler das er zu wenig XP-Punkte hat um überhaupt eine Flasche herstellen zu können.
         }
     }
 
@@ -44,12 +41,10 @@ public class CheckCommand {
      */
     public String checkAdmin(String otherPlayer) {
         if (Bukkit.getServer().getPlayer(otherPlayer) != null) {
-            String sb = MESSAGEHANDLER.getMessages().get("ADMIN_CHECK_MESSAGE");
-            sb.replace("[playername]",otherPlayer);
-            sb.replace("[Exp]", Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()));
-            return MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + sb;
+            String sb = MESSAGEHANDLER.getConfiguration().getString("ADMIN_CHECK_MESSAGE").replace("[playername]",otherPlayer).replace("[Exp]", Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()));
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
         } else {
-            return MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NO_PLAYER");
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_PLAYER");
         }
     }
 }

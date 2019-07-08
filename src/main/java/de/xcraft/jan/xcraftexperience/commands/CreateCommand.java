@@ -18,7 +18,6 @@ import static de.xcraft.jan.xcraftexperience.XcraftExperience.MESSAGEHANDLER;
  * Class for create command.
  */
 public class CreateCommand {
-
     Player player;
     ItemStack itemToAdd;
     int amount;
@@ -31,6 +30,7 @@ public class CreateCommand {
 
     /**
      * If successful the player will be given Exp-Bottles. The Exp and money of the player will be decreased after that.
+     *
      * @return string with a specific message depending if successful or not
      */
     public String createPlayer() {
@@ -41,17 +41,17 @@ public class CreateCommand {
                 if (Registry.ECONOMY.has(player, amount * CONFIGHANDLER.getCostsInt())) { //Überprüft ob der Spieler genug Geld besitzt.
 
                     givePlayer();
-                    player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Dir wurden " + amount * CONFIGHANDLER.getCostsInt() + " " + MESSAGEHANDLER.getMessages().get("MONEY_NAME") + " abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
-                    return MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + Integer.toString(amount) + " Erfahrungsfläschchen erhalten."; //Sage dem Spieler das er Exp-Flschen erhalten hat.
+                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Dir wurden " + amount * CONFIGHANDLER.getCostsInt() + " " + MESSAGEHANDLER.getConfiguration().getString("MONEY_NAME") + " abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
+                    return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + Integer.toString(amount) + " Erfahrungsfläschchen erhalten."; //Sage dem Spieler das er Exp-Flschen erhalten hat.
 
                 } else {
-                    return MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NO_MONEY");//Sagt dem Spieler das er nicht genug Geld besitzt.
+                    return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_MONEY");//Sagt dem Spieler das er nicht genug Geld besitzt.
                 }
             } else {
-                return MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NO_SPACE"); //Sagt dem Spieler das er nicht genug Platz im Inventar hat.
+                return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_SPACE"); //Sagt dem Spieler das er nicht genug Platz im Inventar hat.
             }
         } else {
-            return MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NO_XP");//Sagt dem Spieler das er nicht genug XP-Punkte besietzt.
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_XP");//Sagt dem Spieler das er nicht genug XP-Punkte besietzt.
         }
     }
 
@@ -65,6 +65,7 @@ public class CreateCommand {
 
     /**
      * Validate if the player has enough space in his inventory
+     *
      * @return true if the player has enough space in his inventory
      */
     private boolean validateSpace() {

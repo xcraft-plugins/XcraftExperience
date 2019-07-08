@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,22 +14,10 @@ import java.util.HashMap;
  */
 public class MessageHandler {
 
-    HashMap<String, String> messages = new HashMap<>();
+    FileConfiguration configuration;
 
     public MessageHandler(JavaPlugin plugin){
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(createCustomConfig(plugin))));
-            String message;
-            while ((message = reader.readLine()) != null) {
-                String[] args = message.split("[:]", 2);
-                if (args.length != 2) continue;
-                messages.put(args[0], args[1]);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        createCustomConfig(plugin);
     }
 
     /**
@@ -42,7 +31,7 @@ public class MessageHandler {
             plugin.saveResource("messages.yml", false);
         }
 
-        FileConfiguration configuration = new YamlConfiguration();
+        configuration = new YamlConfiguration();
         try {
             configuration.load(file);
         } catch (IOException | InvalidConfigurationException e) {
@@ -52,9 +41,9 @@ public class MessageHandler {
     }
 
     /**
-     * @return the hashmap with all messages from the messages.yml file
+     * @return the yml file
      */
-    public HashMap<String, String> getMessages() {
-        return messages;
+    public FileConfiguration getConfiguration(){
+        return configuration;
     }
 }
