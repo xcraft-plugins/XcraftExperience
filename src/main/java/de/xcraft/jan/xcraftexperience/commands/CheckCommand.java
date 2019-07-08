@@ -7,12 +7,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
+import static de.xcraft.jan.xcraftexperience.XcraftExperience.CONFIGHANDLER;
+import static de.xcraft.jan.xcraftexperience.XcraftExperience.MESSAGEHANDLER;
+
 /**
  * Class for check command.
  */
 public class CheckCommand {
 
-    public File config = new File("config");
     Player player;
     JavaPlugin plugin;
 
@@ -25,13 +27,11 @@ public class CheckCommand {
      * @return string with values of the amount of Exp and money and how many Exp-Bottle can be created
      */
     public String checkPlayer() {
-        if (player.getTotalExperience() >= plugin.getConfig().getInt("experience")) {//Überprüft ob der Spieler mehr XP hat als in der Config angeben wenn ja sagt er ihm we viele Flaschen er herstellen kann und wie viel es ihm Kostet.
-            return ChatColor.GRAY + plugin.getConfig().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + ChatColor.GOLD + Integer.toString(player.getTotalExperience()) + " Erfahrungspunkte. " + ChatColor.DARK_AQUA +
-                    "Du kannst " + ChatColor.GOLD + Integer.toString(player.getTotalExperience() / plugin.getConfig().getInt("experience")) + " Erfahrungsfläschchen" + ChatColor.DARK_AQUA + " herstellen " +
-                    "und würde dich " + ChatColor.GOLD + Integer.toString(player.getTotalExperience() / plugin.getConfig().getInt("experience") * plugin.getConfig().getInt("costs")) + " " + plugin.getConfig().getString("MONEY_NAME") + ChatColor.DARK_AQUA + " kosten.";
+        if (player.getTotalExperience() >= CONFIGHANDLER.getExperienceInt()) {//Überprüft ob der Spieler mehr XP hat als in der Config angeben wenn ja sagt er ihm we viele Flaschen er herstellen kann und wie viel es ihm Kostet.
+            String sb = new String(MESSAGEHANDLER.getConfiguration().getString("PLAYER_CHECK_MESSAGE")).replace("[Exp]",Integer.toString(player.getTotalExperience())).replace("[BottleAmount]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceInt())).replace("[cost]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceInt() * CONFIGHANDLER.getCostsInt()));
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
         } else {
-            return ChatColor.GRAY + plugin.getConfig().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + Integer.toString(player.getTotalExperience()) + " Erfahrungspunkte. " +
-                    "Du kannst keine Erfahrungsfläschen herstellen."; //Sagt dem Spieler das er zu wenig XP-Punkte hat um überhaupt eine Flasche herstellen zu können.
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_XP"); //Sagt dem Spieler das er zu wenig XP-Punkte hat um überhaupt eine Flasche herstellen zu können.
         }
     }
 
@@ -41,9 +41,10 @@ public class CheckCommand {
      */
     public String checkAdmin(String otherPlayer) {
         if (Bukkit.getServer().getPlayer(otherPlayer) != null) {
-            return ChatColor.GRAY + plugin.getConfig().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " " + otherPlayer + " hat " + Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()) + " Erfahrungspunkte.";
+            String sb = MESSAGEHANDLER.getConfiguration().getString("ADMIN_CHECK_MESSAGE").replace("[playername]",otherPlayer).replace("[Exp]", Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()));
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
         } else {
-            return ChatColor.RED + " " + otherPlayer + " wurde nicht gefunden!";
+            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_PLAYER");
         }
     }
 }
