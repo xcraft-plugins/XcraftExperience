@@ -2,7 +2,7 @@ package de.xcraft.jan.xcraftexperience.handler;
 
 import de.xcraft.jan.xcraftexperience.commands.CheckCommand;
 import de.xcraft.jan.xcraftexperience.commands.CreateCommand;
-import de.xcraft.jan.xcraftexperience.commands.InfoCommand;
+import de.xcraft.jan.xcraftexperience.commands.HelpCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -57,9 +57,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-                player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + " " + ChatColor.DARK_GREEN + "Help:");
-                player.sendMessage(ChatColor.GRAY + "->" + MESSAGEHANDLER.getConfiguration().getString("BOTTLE_CHECK_HELP_TEXT"));
-                player.sendMessage(ChatColor.GRAY + "->" + MESSAGEHANDLER.getConfiguration().getString("BOTTLE_CREATE_HELP_TEXT"));
+                HelpCommand.PluginInfo(player,plugin);
             } else if (args[0].equals("check") && args.length == 1) {
                 if (player.hasPermission("xcraftexperience.check")) {
                     checkCommand = new CheckCommand(player, plugin);
@@ -88,10 +86,6 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                     }
                 } else {
                     player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));
-                }
-            } else if (args[0].equals("info")) {
-                if (player.hasPermission("xcraftexperience.info")) {
-                    player.sendMessage(InfoCommand.PluginInfo(player, plugin));
                 }
             }
         }

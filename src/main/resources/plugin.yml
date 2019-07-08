@@ -1,7 +1,10 @@
 name: XcraftExperience
-version: 1.1.0
+version: 1.1.1
 main: de.xcraft.jan.xcraftexperience.XcraftExperience
 api-version: 1.13
+authors:
+- MyNameIsJan
+- Umbreon
 
 commands:
   bottle:
