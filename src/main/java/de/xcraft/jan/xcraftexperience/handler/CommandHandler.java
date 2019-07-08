@@ -1,5 +1,8 @@
-package de.xcraft.jan.xcraftexperience.commands;
+package de.xcraft.jan.xcraftexperience.handler;
 
+import de.xcraft.jan.xcraftexperience.commands.CheckCommand;
+import de.xcraft.jan.xcraftexperience.commands.CreateCommand;
+import de.xcraft.jan.xcraftexperience.commands.InfoCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,6 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static de.xcraft.jan.xcraftexperience.XcraftExperience.MESSAGEHANDLER;
 
 /**
  * Handler class for all commands.
@@ -52,42 +57,37 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-                player.sendMessage(ChatColor.GRAY + " " + plugin.getConfig().getString("PLUGIN_PREFIX") + " " + ChatColor.GREEN + "Help:");
-                player.sendMessage(ChatColor.GRAY + "->" + ChatColor.GREEN + "/bottle check " + ChatColor.DARK_AQUA + " - Zeigt dir an wie viele Erfahrungsfläschchen du herstellen kannst.");
-                player.sendMessage(ChatColor.GRAY + "->" + ChatColor.GREEN + "/bottle create <amount>" + ChatColor.DARK_AQUA + " - Erstellt Erfahrungsfläschchen.");
+                player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + " " + ChatColor.GREEN + "Help:");
+                player.sendMessage(ChatColor.GRAY + "->&r" + MESSAGEHANDLER.getMessages().get("BOTTLE_CHECK_HELP_TEXT"));
+                player.sendMessage(ChatColor.GRAY + "->&r" + MESSAGEHANDLER.getMessages().get("BOTTLE_CREATE_HELP_TEXT"));
             } else if (args[0].equals("check") && args.length == 1) {
                 if (player.hasPermission("xcraftexperience.check")) {
                     checkCommand = new CheckCommand(player, plugin);
                     player.sendMessage(checkCommand.checkPlayer());
                 } else {
-                    player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
+                    player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_PERMISSIONS"));
                 }
             } else if (args[0].equals("check") && args[1] != null) {
                 if (player.hasPermission("xcraftexperience.check.other")) {
                     checkCommand = new CheckCommand(player, plugin);
                     player.sendMessage(checkCommand.checkAdmin(args[1]));
                 } else {
-                    player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
+                    player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_PERMISSIONS"));
                 }
             } else if (args[0].equals("create")) {
                 if (player.hasPermission("xcraftexperience.create")) {
-                    if (args.length == 2 && !args[1].equals("")) {
-                        if (isInt(args[1])) {
-                            if(isPositive(args[1])){
-                                createCommand = new CreateCommand(player, plugin, args[1]);
-                                player.sendMessage(createCommand.createPlayer());
-                            }
-                            else {
-                                player.sendMessage(ChatColor.RED + "Bitte gib eine Positive Zahl ein!");
-                            }
+                    if (args.length == 2 && !args[1].equals("") || args.length == 2 && isInt(args[1])) {
+                        if (isPositive(args[1])) {
+                            createCommand = new CreateCommand(player, args[1]);
+                            player.sendMessage(createCommand.createPlayer());
                         } else {
-                            player.sendMessage(ChatColor.RED + "Du musst eine Zahl eingeben!");
+                            player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NEGATIVE_NUMBER"));
                         }
                     } else {
-                        player.sendMessage(ChatColor.RED + "Du musst eine Zahl eingeben!");
+                        player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_NO_NUMBER"));
                     }
                 } else {
-                    player.sendMessage(ChatColor.RED + "Das darfst du nicht tun!");
+                    player.sendMessage(MESSAGEHANDLER.getMessages().get("PLUGIN_PREFIX") + MESSAGEHANDLER.getMessages().get("ERROR_PERMISSIONS"));
                 }
             } else if (args[0].equals("info")) {
                 if (player.hasPermission("xcraftexperience.info")) {
@@ -118,8 +118,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
     private boolean isPositive(String str) {
         if (Integer.parseInt(str) > 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
