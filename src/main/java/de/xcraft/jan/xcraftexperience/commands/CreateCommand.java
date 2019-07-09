@@ -39,7 +39,7 @@ public class CreateCommand {
                 if (Registry.ECONOMY.has(player, amount * CONFIGHANDLER.getEuronenCost())) { //Überprüft ob der Spieler genug Geld besitzt.
 
                     givePlayer();
-                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Dir wurden " + getTotalCost() + " " + MESSAGEHANDLER.getConfiguration().getString("MONEY_NAME") + " abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
+                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + "§3Dir wurden " + ChatColor.YELLOW + getTotalCost() + " " + MESSAGEHANDLER.getConfiguration().getString("MONEY_NAME") + " §3abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
                     return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Du hast " + ChatColor.YELLOW + amount + ChatColor.DARK_AQUA + " Erfahrungsfläschchen erhalten."; //Sage dem Spieler das er Exp-Flschen erhalten hat.
 
                 } else {

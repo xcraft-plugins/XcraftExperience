@@ -38,8 +38,13 @@ public class CheckCommand {
      */
     public String checkAdmin(String otherPlayer) {
         if (Bukkit.getServer().getPlayer(otherPlayer) != null) {
-            String sb = MESSAGEHANDLER.getConfiguration().getString("ADMIN_CHECK_MESSAGE").replace("[playername]", otherPlayer).replace("[Exp]", getExpOfPlayer(otherPlayer));
-            return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
+            if (Integer.parseInt(getExpOfPlayer(otherPlayer)) == 1) {
+                String sb = MESSAGEHANDLER.getConfiguration().getString("ADMIN_CHECK_MESSAGE_SINGLE").replace("[playername]", otherPlayer).replace("[Exp]", getExpOfPlayer(otherPlayer));
+                return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
+            } else {
+                String sb = MESSAGEHANDLER.getConfiguration().getString("ADMIN_CHECK_MESSAGE_MULTIPLE").replace("[playername]", otherPlayer).replace("[Exp]", getExpOfPlayer(otherPlayer));
+                return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
+            }
         } else {
             return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_PLAYER");
         }
