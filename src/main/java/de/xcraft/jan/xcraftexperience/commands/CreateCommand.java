@@ -40,7 +40,7 @@ public class CreateCommand {
 
                     givePlayer();
                     player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Dir wurden " + amount * CONFIGHANDLER.getEuronenCost() + " " + MESSAGEHANDLER.getConfiguration().getString("MONEY_NAME") + " abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
-                    return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + ChatColor.YELLOW + Integer.toString(amount) + ChatColor.DARK_AQUA + " Erfahrungsfläschchen erhalten."; //Sage dem Spieler das er Exp-Flschen erhalten hat.
+                    return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Du hast " + ChatColor.YELLOW + Integer.toString(amount) + ChatColor.DARK_AQUA + " Erfahrungsfläschchen erhalten."; //Sage dem Spieler das er Exp-Flschen erhalten hat.
 
                 } else {
                     return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_MONEY");//Sagt dem Spieler das er nicht genug Geld besitzt.

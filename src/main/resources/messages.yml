@@ -6,7 +6,7 @@ BOTTLE_ADMIN_CHECK_HELP_TEXT: '§a/bottle check <player> §3- Zeigt die Erfahrun
 BOTTLE_CREATE_HELP_TEXT: '§a/bottle create <amount> §3- Erstellt Erfahrungsfläschchen.§r'
 BOTTLE_ADMIN_SET_HELP_TEXT: '§a/bottle set <Variable> <value> §3- Lässt dich die Variablen in der config datei ingame ändern.§r'
 PLAYER_CHECK_MESSAGE: '§3Du hast §e[Exp]§3 Erfahrungspunkte mit denen du §e[BottleAmount]§3 Erfahrungsfläschchen herstellen kannst. Das würde dich §e[cost]§3 Euronen kosten.§r'
-ADMIN_CHECK_MESSAGE: '§3Der Spieler §e[playername] §3hat §e[Exp]§3.§r'
+ADMIN_CHECK_MESSAGE: '§3Der Spieler §e[playername] §3hat §e[Exp]§3 Erfahrungspunkte.§r'
 VALUE_CHANGE: '§3Der Wert wurde erfolgreich geändert.§r'
 ERROR_PERMISSIONS: '§4Du hast keine Rechte dies zu tun!§r'
 ERROR_NEGATIVE_NUMBER: '§4Bitte gib eine Positive Zahl ein!§r'

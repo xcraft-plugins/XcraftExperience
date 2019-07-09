@@ -85,15 +85,19 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                 }
             } else if (args[0].equals("create")) {
                 if (player.hasPermission("xcraftexperience.create")) {
-                    if (args.length == 2 && !args[1].equals("") || args.length == 2 && isInt(args[1])) {
-                        if (isPositive(args[1])) {
-                            createCommand = new CreateCommand(player, args[1]);
-                            player.sendMessage(createCommand.createPlayer());
+                    if (args.length == 2 && !args[1].equals("")) {
+                        if (args.length == 2 && isInt(args[1])) {
+                            if (isPositive(args[1])) {
+                                createCommand = new CreateCommand(player, args[1]);
+                                player.sendMessage(createCommand.createPlayer());
+                            } else {
+                                player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NEGATIVE_NUMBER"));
+                            }
                         } else {
-                            player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NEGATIVE_NUMBER"));
+                            player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_NUMBER"));
                         }
                     } else {
-                        player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_NUMBER"));
+                        player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_UNFINISHED_COMMAND"));
                     }
                 } else {
                     player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));
