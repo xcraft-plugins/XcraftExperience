@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
+
 import static de.xcraft.jan.xcraftexperience.XcraftExperience.CONFIGHANDLER;
 import static de.xcraft.jan.xcraftexperience.XcraftExperience.MESSAGEHANDLER;
 
@@ -73,7 +75,7 @@ public class CreateCommand {
 
         for (ItemStack s : player.getInventory().getStorageContents()) {
             if (s != null) {
-                if (s.getType() == Material.EXPERIENCE_BOTTLE) {
+                if (s.getType() == Material.EXPERIENCE_BOTTLE && s.getItemMeta().getDisplayName().equals(CONFIGHANDLER.getDisplayedName()) && s.getItemMeta().getLore().equals(Arrays.asList(CONFIGHANDLER.getLore()))) {
                     freeSpace += (s.getMaxStackSize() - s.getAmount());
                 }
                 usedStacks++;
