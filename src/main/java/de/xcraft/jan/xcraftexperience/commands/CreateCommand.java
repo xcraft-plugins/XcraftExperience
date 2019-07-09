@@ -39,8 +39,8 @@ public class CreateCommand {
                 if (Registry.ECONOMY.has(player, amount * CONFIGHANDLER.getEuronenCost())) { //Überprüft ob der Spieler genug Geld besitzt.
 
                     givePlayer();
-                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Dir wurden " + amount * CONFIGHANDLER.getEuronenCost() + " " + MESSAGEHANDLER.getConfiguration().getString("MONEY_NAME") + " abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
-                    return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + ChatColor.YELLOW + Integer.toString(amount) + ChatColor.DARK_AQUA + " Erfahrungsfläschchen erhalten."; //Sage dem Spieler das er Exp-Flschen erhalten hat.
+                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Dir wurden " + getTotalCost() + " " + MESSAGEHANDLER.getConfiguration().getString("MONEY_NAME") + " abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
+                    return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + ChatColor.YELLOW + amount + ChatColor.DARK_AQUA + " Erfahrungsfläschchen erhalten."; //Sage dem Spieler das er Exp-Flschen erhalten hat.
 
                 } else {
                     return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_MONEY");//Sagt dem Spieler das er nicht genug Geld besitzt.
@@ -51,6 +51,13 @@ public class CreateCommand {
         } else {
             return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_XP");//Sagt dem Spieler das er nicht genug XP-Punkte besietzt.
         }
+    }
+
+    /**
+     * @return the amount of monea that have being decreased
+     */
+    private String getTotalCost() {
+        return Integer.toString(amount * CONFIGHANDLER.getEuronenCost());
     }
 
     /**
