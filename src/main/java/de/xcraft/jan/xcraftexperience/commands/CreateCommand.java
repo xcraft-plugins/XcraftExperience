@@ -7,10 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static de.xcraft.jan.xcraftexperience.XcraftExperience.CONFIGHANDLER;
 import static de.xcraft.jan.xcraftexperience.XcraftExperience.MESSAGEHANDLER;
 
@@ -30,18 +26,17 @@ public class CreateCommand {
 
     /**
      * If successful the player will be given Exp-Bottles. The Exp and money of the player will be decreased after that.
-     *
      * @return string with a specific message depending if successful or not
      */
     public String createPlayer() {
-        if (player.getTotalExperience() / CONFIGHANDLER.getExperienceInt() >= amount) { //Überprüft ob der Spieler genug Erfahrungspunkte besitzt.
+        if (player.getTotalExperience() / CONFIGHANDLER.getExperienceCost() >= amount) { //Überprüft ob der Spieler genug Erfahrungspunkte besitzt.
 
             if (validateSpace()) {
 
-                if (Registry.ECONOMY.has(player, amount * CONFIGHANDLER.getCostsInt())) { //Überprüft ob der Spieler genug Geld besitzt.
+                if (Registry.ECONOMY.has(player, amount * CONFIGHANDLER.getEuronenCost())) { //Überprüft ob der Spieler genug Geld besitzt.
 
                     givePlayer();
-                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Dir wurden " + amount * CONFIGHANDLER.getCostsInt() + " " + MESSAGEHANDLER.getConfiguration().getString("MONEY_NAME") + " abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
+                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + "Dir wurden " + amount * CONFIGHANDLER.getEuronenCost() + " " + MESSAGEHANDLER.getConfiguration().getString("MONEY_NAME") + " abgezogen. "); //Sagt dem Spieler das ihm Geld genommen wurde.
                     return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + ChatColor.DARK_AQUA + " Du hast " + Integer.toString(amount) + " Erfahrungsfläschchen erhalten."; //Sage dem Spieler das er Exp-Flschen erhalten hat.
 
                 } else {
@@ -55,17 +50,19 @@ public class CreateCommand {
         }
     }
 
+    /**
+     * @return the XP bottle that will be created with custom name and lore
+     */
     private ItemStack itemToAdd() {
         ItemMeta m = itemToAdd.getItemMeta();
-        m.setLore(new ArrayList<String>(Arrays.asList("OH wie praktisch!"))); //Setzt die Lore der XP-Flasche.
-        m.setDisplayName("Ardanische XP-Flasche"); //Setzt den Namen der XP-Flaschen.
+        m.setLore(CONFIGHANDLER.getLore()); //Setzt die Lore der XP-Flasche.
+        m.setDisplayName(CONFIGHANDLER.getDisplayedName()); //Setzt den Namen der XP-Flaschen.
         itemToAdd.setItemMeta(m); //Setzt die ItemMeta der XP-Flaschen.
         return itemToAdd;
     }
 
     /**
      * Validate if the player has enough space in his inventory
-     *
      * @return true if the player has enough space in his inventory
      */
     private boolean validateSpace() {
@@ -96,6 +93,6 @@ public class CreateCommand {
     private void givePlayer() {
         player.giveExp(-(amount * 7)); //Nimmt dem Spieler Exp.
         player.getInventory().addItem(itemToAdd()); //Gibt dem Spieler die EXP-Flaschen
-        Registry.ECONOMY.withdrawPlayer(player, amount * CONFIGHANDLER.getCostsInt()); //Nimmt dem Spieler Geld.
+        Registry.ECONOMY.withdrawPlayer(player, amount * CONFIGHANDLER.getEuronenCost()); //Nimmt dem Spieler Geld.
     }
 }

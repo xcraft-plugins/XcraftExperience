@@ -3,6 +3,7 @@ package de.xcraft.jan.xcraftexperience.handler;
 import de.xcraft.jan.xcraftexperience.commands.CheckCommand;
 import de.xcraft.jan.xcraftexperience.commands.CreateCommand;
 import de.xcraft.jan.xcraftexperience.commands.HelpCommand;
+import de.xcraft.jan.xcraftexperience.commands.SetCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -33,17 +34,28 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
-        if (args.length == 1) {
-            completions.add("check");
-            completions.add("create");
-
-            return completions;
-        } else if (args.length > 1 && args[0].equals("create")) {
-            completions.add("<Amount>");
-
-            return completions;
+        Player player;
+        if (sender instanceof Player) {
+            player = (Player) sender;
+            if (args.length == 1) {
+                completions.add("check");
+                completions.add("create");
+                if (player.hasPermission("xcraftexperience.set")) completions.add("set");
+                return completions;
+            } else if (args.length == 2 && args[0].equals("create")) {
+                completions.add("<Amount>");
+                return completions;
+            } else if (args.length == 2 && args[0].equals("set") && player.hasPermission("xcraftexperience.set")) {
+                completions.add("euronencost");
+                completions.add("experiencecost");
+                completions.add("diplayedname");
+                completions.add("lore");
+                return completions;
+            } else if (args.length == 3 && player.hasPermission("xcraftexperience.set")) {
+                completions.add("<value>");
+                return completions;
+            }
         }
-
         for (Player p : Bukkit.getOnlinePlayers()) {
             completions.add(p.getName());
         }
@@ -83,6 +95,20 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                         }
                     } else {
                         player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_NUMBER"));
+                    }
+                } else {
+                    player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));
+                }
+            } else if (args[0].equals("set")) {
+                if (player.hasPermission("xcraftexperience.set")){
+                    if (args.length <= 2 && !args[1].equals("")) {
+                        if (args.length == 3 && !args[2].equals("")) {
+                            SetCommand.setCommand(args[1], args[2], player);
+                        } else {
+                            player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_UNKNOWN_COMMAND"));
+                        }
+                    } else {
+                        player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_UNKNOWN_COMMAND"));
                     }
                 } else {
                     player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));

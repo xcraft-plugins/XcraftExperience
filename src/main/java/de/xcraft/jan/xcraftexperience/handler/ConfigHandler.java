@@ -3,6 +3,9 @@ package de.xcraft.jan.xcraftexperience.handler;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Handler class for the default config of this plugin
  */
@@ -34,8 +37,8 @@ public class ConfigHandler {
      * Sets the cost of the EXP-Bottle in the config file
      * @param costs the amount of how much a EXP-Bottle should cost
      */
-    public void setCosts(int costs){
-        config.addDefault("costs", costs);
+    public void setEuronenCost(int costs){
+        config.set("EuronenCost", costs);
         plugin.saveConfig();
     }
 
@@ -43,36 +46,54 @@ public class ConfigHandler {
      * Sets the Exchange amount of an EXP-Bottle in the config file
      * @param exchangeAmount the amount of how much EXP will be decrease of the player from getting one EXP-Bottle
      */
-    public void setExchangeAmount(int exchangeAmount){
-        config.addDefault("experience", exchangeAmount);
+    public void setExperienceCost(int exchangeAmount){
+        config.set("ExperienceCost", exchangeAmount);
         plugin.saveConfig();
     }
 
     /**
-     * @return the cost as an int
+     * Sets the Displayedname of the XP bottle
+     * @param displayedName the name of the XP bottle
      */
-    public int getCostsInt(){
-        return config.getInt("costs");
+    public void setDisplayedName(String displayedName){
+        config.set("DisplayedName", displayedName);
+        plugin.saveConfig();
     }
 
     /**
-     * @return the cost as a String
+     * Sets the Lore of the XP bottle
+     * @param lore the lore of the XP bottle
      */
-    public String getCostsString(){
-        return Integer.toString(getCostsInt());
+    public void setLore(String lore){
+        config.set("Lore", lore);
+        plugin.saveConfig();
     }
 
     /**
-     * @return the Exchange amount as an int
+     * @return the Euronen cost of one XP bottle
      */
-    public int getExperienceInt(){
-        return config.getInt("experience");
+    public int getEuronenCost(){
+        return config.getInt("EuronenCost");
     }
 
     /**
-     * @return the Exchange amount as a String
+     * @return the amount of XP that is needed for one XP bottle
      */
-    public String getExperienceString(){
-        return Integer.toString(getExperienceInt());
+    public int getExperienceCost(){
+        return config.getInt("ExperienceCost");
+    }
+
+    /**
+     * @return the Diplayedname of the XP bottle
+     */
+    public String getDisplayedName(){
+        return config.getString("DisplayedName");
+    }
+
+    /**
+     * @return the Lore of the XP bottle
+     */
+    public List<String> getLore(){
+        return Arrays.asList(config.getString("Lore"));
     }
 }

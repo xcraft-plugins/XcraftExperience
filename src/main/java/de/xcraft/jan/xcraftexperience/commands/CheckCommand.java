@@ -1,11 +1,8 @@
 package de.xcraft.jan.xcraftexperience.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 
 import static de.xcraft.jan.xcraftexperience.XcraftExperience.CONFIGHANDLER;
 import static de.xcraft.jan.xcraftexperience.XcraftExperience.MESSAGEHANDLER;
@@ -27,8 +24,8 @@ public class CheckCommand {
      * @return string with values of the amount of Exp and money and how many Exp-Bottle can be created
      */
     public String checkPlayer() {
-        if (player.getTotalExperience() >= CONFIGHANDLER.getExperienceInt()) {//Überprüft ob der Spieler mehr XP hat als in der Config angeben wenn ja sagt er ihm we viele Flaschen er herstellen kann und wie viel es ihm Kostet.
-            String sb = new String(MESSAGEHANDLER.getConfiguration().getString("PLAYER_CHECK_MESSAGE")).replace("[Exp]",Integer.toString(player.getTotalExperience())).replace("[BottleAmount]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceInt())).replace("[cost]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceInt() * CONFIGHANDLER.getCostsInt()));
+        if (player.getTotalExperience() >= CONFIGHANDLER.getExperienceCost()) {//Überprüft ob der Spieler mehr XP hat als in der Config angeben wenn ja sagt er ihm we viele Flaschen er herstellen kann und wie viel es ihm Kostet.
+            String sb = new String(MESSAGEHANDLER.getConfiguration().getString("PLAYER_CHECK_MESSAGE")).replace("[Exp]",Integer.toString(player.getTotalExperience())).replace("[BottleAmount]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceCost())).replace("[cost]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceCost() * CONFIGHANDLER.getEuronenCost()));
             return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
         } else {
             return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_XP"); //Sagt dem Spieler das er zu wenig XP-Punkte hat um überhaupt eine Flasche herstellen zu können.
