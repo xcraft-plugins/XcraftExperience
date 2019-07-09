@@ -7,8 +7,8 @@ import static de.xcraft.jan.xcraftexperience.XcraftExperience.MESSAGEHANDLER;
 
 public class SetCommand {
 
-    public static void setCommand(String variable, String value, Player player){
-        if (variable.equalsIgnoreCase("euronencost")){
+    public static void setCommand(String variable, String value, Player player) {
+        if (variable.equalsIgnoreCase("euronencost")) {
             if (isInt(value)) {
                 if (isPositive(value)) {
                     CONFIGHANDLER.setEuronenCost(Integer.parseInt(value));
@@ -19,7 +19,7 @@ public class SetCommand {
             } else {
                 player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_NUMBER"));
             }
-        }else if (variable.equalsIgnoreCase("experiencecost")){
+        } else if (variable.equalsIgnoreCase("experiencecost")) {
             if (isInt(value)) {
                 if (isPositive(value)) {
                     CONFIGHANDLER.setExperienceCost(Integer.parseInt(value));
@@ -30,13 +30,13 @@ public class SetCommand {
             } else {
                 player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_NUMBER"));
             }
-        }else if (variable.equalsIgnoreCase("diplayedname")){
+        } else if (variable.equalsIgnoreCase("diplayedname")) {
             CONFIGHANDLER.setDisplayedName(value);
             player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("VALUE_CHANGE"));
-        }else if (variable.equalsIgnoreCase("lore")){
+        } else if (variable.equalsIgnoreCase("lore")) {
             CONFIGHANDLER.setLore(value);
             player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("VALUE_CHANGE"));
-        }else {
+        } else {
 
         }
     }

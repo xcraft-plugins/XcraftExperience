@@ -25,7 +25,7 @@ public class CheckCommand {
      */
     public String checkPlayer() {
         if (player.getTotalExperience() >= CONFIGHANDLER.getExperienceCost()) {//Überprüft ob der Spieler mehr XP hat als in der Config angeben wenn ja sagt er ihm we viele Flaschen er herstellen kann und wie viel es ihm Kostet.
-            String sb = new String(MESSAGEHANDLER.getConfiguration().getString("PLAYER_CHECK_MESSAGE")).replace("[Exp]",Integer.toString(player.getTotalExperience())).replace("[BottleAmount]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceCost())).replace("[cost]",Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceCost() * CONFIGHANDLER.getEuronenCost()));
+            String sb = new String(MESSAGEHANDLER.getConfiguration().getString("PLAYER_CHECK_MESSAGE")).replace("[Exp]", Integer.toString(player.getTotalExperience())).replace("[BottleAmount]", Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceCost())).replace("[cost]", Integer.toString(player.getTotalExperience() / CONFIGHANDLER.getExperienceCost() * CONFIGHANDLER.getEuronenCost()));
             return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
         } else {
             return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_XP"); //Sagt dem Spieler das er zu wenig XP-Punkte hat um überhaupt eine Flasche herstellen zu können.
@@ -38,7 +38,7 @@ public class CheckCommand {
      */
     public String checkAdmin(String otherPlayer) {
         if (Bukkit.getServer().getPlayer(otherPlayer) != null) {
-            String sb = MESSAGEHANDLER.getConfiguration().getString("ADMIN_CHECK_MESSAGE").replace("[playername]",otherPlayer).replace("[Exp]", Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()));
+            String sb = MESSAGEHANDLER.getConfiguration().getString("ADMIN_CHECK_MESSAGE").replace("[playername]", otherPlayer).replace("[Exp]", Integer.toString(Bukkit.getServer().getPlayer(otherPlayer).getTotalExperience()));
             return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + sb;
         } else {
             return MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_NO_PLAYER");

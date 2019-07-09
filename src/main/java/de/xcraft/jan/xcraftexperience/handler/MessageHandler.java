@@ -5,9 +5,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Handler class for the messages of this plugin.
@@ -16,7 +15,7 @@ public class MessageHandler {
 
     FileConfiguration configuration;
 
-    public MessageHandler(JavaPlugin plugin){
+    public MessageHandler(JavaPlugin plugin) {
         createCustomConfig(plugin);
     }
 
@@ -43,7 +42,7 @@ public class MessageHandler {
     /**
      * @return the yml file
      */
-    public FileConfiguration getConfiguration(){
+    public FileConfiguration getConfiguration() {
         return configuration;
     }
 }

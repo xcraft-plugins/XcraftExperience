@@ -7,14 +7,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import static de.xcraft.jan.xcraftexperience.util.Registry.LOGGER;
 import static de.xcraft.jan.xcraftexperience.util.Registry.initVault;
-import static de.xcraft.jan.xcraftexperience.util.Registry.*;
 
 public class XcraftExperience extends JavaPlugin {
 
-    CommandHandler commandHandler = new CommandHandler(this);
     public static MessageHandler MESSAGEHANDLER;
     public static ConfigHandler CONFIGHANDLER;
+    CommandHandler commandHandler = new CommandHandler(this);
     PluginManager pm;
 
     @Override

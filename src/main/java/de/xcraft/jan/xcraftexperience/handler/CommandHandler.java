@@ -5,7 +5,6 @@ import de.xcraft.jan.xcraftexperience.commands.CreateCommand;
 import de.xcraft.jan.xcraftexperience.commands.HelpCommand;
 import de.xcraft.jan.xcraftexperience.commands.SetCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -69,7 +68,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
-                HelpCommand.PluginInfo(player,plugin);
+                HelpCommand.PluginInfo(player, plugin);
             } else if (args[0].equals("check") && args.length == 1) {
                 if (player.hasPermission("xcraftexperience.check")) {
                     checkCommand = new CheckCommand(player, plugin);
@@ -100,15 +99,15 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
                     player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));
                 }
             } else if (args[0].equals("set")) {
-                if (player.hasPermission("xcraftexperience.set")){
-                    if (args.length <= 2 && !args[1].equals("")) {
+                if (player.hasPermission("xcraftexperience.set")) {
+                    if (args.length >= 2 && !args[1].equals("")) {
                         if (args.length == 3 && !args[2].equals("")) {
                             SetCommand.setCommand(args[1], args[2], player);
                         } else {
-                            player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_UNKNOWN_COMMAND"));
+                            player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_UNFINISHED_COMMAND"));
                         }
                     } else {
-                        player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_UNKNOWN_COMMAND"));
+                        player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_UNFINISHED_COMMAND"));
                     }
                 } else {
                     player.sendMessage(MESSAGEHANDLER.getConfiguration().getString("PLUGIN_PREFIX") + MESSAGEHANDLER.getConfiguration().getString("ERROR_PERMISSIONS"));
