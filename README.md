@@ -8,7 +8,8 @@
 
 ## Commands
 - Alias: b, bottle, xpbottle, xpb
+- /b {help, info} - gives you infos about the commands that are possible.
 - /b check - Tells you how many XP you have and how many bottles you can create and the cost of it.
-- /b check [Player] - Tells you the XP of another player.
-- /b create [Amount] - Creates a specific amount of XP bottles.
-- /b set [variable] [value] - Sets the variable of the config file ingame
+- /b check \<Player\> - Tells you the XP of another player.
+- /b create \<Amount\> - Creates a specific amount of XP bottles.
+- /b set \<variable\> \<value\> - Sets the variable of the config file ingame.

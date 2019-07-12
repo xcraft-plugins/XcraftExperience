@@ -1,5 +1,5 @@
 name: XcraftExperience
-version: 1.1.7
+version: 1.1.8
 main: de.xcraft.jan.xcraftexperience.XcraftExperience
 api-version: 1.13
 authors:
@@ -11,6 +11,8 @@ commands:
     description: Help Page
     aliases: [b, xpbottle, xpb]
 permissions:
+  xcraftexperience.help:
+    default: op
   xcraftexperience.check.other:
     default: op
   xcraftexperience.create:
