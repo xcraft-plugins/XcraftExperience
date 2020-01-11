@@ -6,7 +6,7 @@
 
     <groupId>de.xcraft.jan</groupId>
     <artifactId>XcraftExperience</artifactId>
-    <version>1.1.8</version>
+    <version>1.1.9</version>
 
     <licenses>
         <license>
@@ -44,7 +44,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
+            <version>1.15.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <!--JUnit dependency-->
